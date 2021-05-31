@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}Post {% endblock %}
+
+{% block content %}
+
+<style>
+    .card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+   width:100%;
+  padding: 2px 16px;
+}
+.cant{
+    width:100%;
+    padding:40px;
+}
+.button{
+ margin-bottom:4px;
+  align-items: canter;
+  margin-left:55px;
+
+}
+h4{
+    margin:0.1rem 0 .1rem 0;
+  align-items: center;
+}
+h1 {
+    font-size: 4.2rem;
+    line-height: 110%;
+    margin: 0.2rem 0 -0.32rem 0;
+
+}
+img.responsive-img, video.responsive-video {
+    max-width: 100%;
+    height: 350px;
+}
+
+
+</style>
+
+
+
+<div class="cant">
+
+    <div class="row">
+        <div class="col s12 m10">
+
+            <h1>{{post.title }}</h1>
+            <p> ({{  post.cat.title}})</p>
+            <img src="/media/{{post.image}}" class="responsive-img" style="max-height:350px;" >
+
+            <br>
+            <p>
+                {{post.content| safe}}
+            </p>
+        </div>
+
+
+        <div class="col s12 m2">
+
+            {% for cat in cats %}
+
+
+
+<div class="card">
+  <img src="/media/{{cat.image}}" alt="Avatar" style="width:100%; height:200px;">
+  <div class="container">
+    <h4><b>{{ cat.title }}</b></h4>
+    <p class="truncate">{{cat.description|safe}}</p>
+      <a href="/category/{{cat.url}}" class="btn button ">Read</a>
+
+  </div>
+</div>
+
+
+            {% endfor %}
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome To Blog {% endblock %}
+
+
+<style>
+    .card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin: 0.5rem 0 1rem 3px;
+    border-radius: 10px;
+  transition: 0.3s;
+  width: 60%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+
+}
+
+.container {
+   width:60%;
+  padding: 2px 16px;
+}
+.cant{
+    width:40%;
+    padding:20px;
+
+}
+
+.card {
+    position: relative;
+    margin: 0.5rem 0 1rem 3px;
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 10px;
+}
+
+.button{
+ margin-bottom:4px;
+  align-items: canter;
+
+}
+h4{
+    margin:0.1rem 0 .1rem 0;
+  align-items: center;
+}
+.container-custom{
+ width:300px;
+ height:300px;
+}
+element.style {
+    width: 300.4px;
+    height: 300px;
+}
+
+</style>
+
+
+
+{% block content %}
+
+
+<div class="container-custom">
+
+    <div class="owl-carousel owl-item activate " style="width:350;">
+        {% for cat in cats %}
+
+        <div class="card">
+            <img src="/media/{{cat.image}}" alt="Avatar" style="width:100%; height:200px;">
+            <div class="container">
+                <h4><b class="">{{ cat.title }}</b></h4>
+                <p class="truncate">{{cat.description |safe}}</p>
+                <a href="/category/{{cat.url}}" class="btn button ">View</a>
+
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+<div class="cont">
+    <div class="row">
+        <div class="col s12">
+            {% for p in posts %}
+            <div class="row">
+
+                <div class="col s12 m8">
+                    {{p.content | truncatewords:100| safe}}
+
+                    <div class="mt20">
+                        <a href="/Blog/{{p.url}}" class="btn">Read More..</a>
+                    </div>
+                </div>
+
+                <div class="col s12 m4 mt20">
+                    <img src="/media/{{p.image}}" alt="here show image" class="responsive-img"
+                         style="width:100%;height:100%;">
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
